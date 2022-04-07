@@ -14,6 +14,7 @@ import {
   removeTeamOnePlayer,
   teamTwoPlayers,
   removeTeamTwoPlayer,
+  removeAllPlayersPlayer,
 } from "../../app/features/TeamsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import TrTable from "../../utils/TrTable";
@@ -29,11 +30,13 @@ const TeamsDetail = () => {
   const handleDeleteOne = (id) => {
     showAlertInfo({ title: "Jugador eliminado correctamente" });
     dispatch(removeTeamOnePlayer(id));
+    dispatch(removeAllPlayersPlayer(id));
   };
 
   const handleDeleteTwo = (id) => {
     showAlertInfo({ title: "Jugador eliminado correctamente" });
     dispatch(removeTeamTwoPlayer(id));
+    dispatch(removeAllPlayersPlayer(id));
   };
   return (
     <Box ml={4} w={["100%", "100%", "100%", "100%"]}>

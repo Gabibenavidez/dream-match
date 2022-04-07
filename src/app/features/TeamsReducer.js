@@ -63,6 +63,14 @@ export const teamsSlice = createSlice({
     addAllPlayers: {
       reducer (state, action) {
         state.allPlayers = state.allPlayers.concat(action.payload);
+        console.log(state.allPlayers);
+      }
+    },
+    removeAllPlayersPlayer: {
+      reducer (state, action) {
+        state.allPlayers = state.allPlayers.filter( 
+          ((player) => player.player_id != action.payload)
+        );
       }
     },
   },
@@ -77,7 +85,8 @@ export const {
   addTeamTwoPlayer,
   removeTeamTwoPlayer,
   removeTeamTwo,
-  addAllPlayers
+  addAllPlayers,
+  removeAllPlayersPlayer
 } = teamsSlice.actions;
 export default teamsSlice.reducer;
 export const teamOnePlayers = (state) => state.teams.teamOne;
