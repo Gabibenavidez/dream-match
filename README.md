@@ -1,6 +1,6 @@
 # Dream Match App
 
-Esta aplicacion te permite crear el equipo de tus sueños, con las leyendas de todos los tiempos, hasta las mas acuales, no importa la posicion, presupuesto, club o edad.
+Esta aplicacion te permite crear el partido de tus sueños, con las leyendas de todos los tiempos, hasta las mas acuales, no importa la posicion, presupuesto, club o edad.
 
 ## Informacion
 El proyecto esta realizado con React.js | Chakra UI | Redux toolkit | Axios | Sweet Alert, etc.
