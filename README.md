@@ -12,7 +12,7 @@ El proyecto esta realizado con React.js | Chakra UI | Redux toolkit | Axios | Sw
 
 4) Una vez instaladas ejecutar en la consola 
 ### `npm start`
-esto abrira el proyecto en tu navegador.
+Esto abrira el proyecto en tu navegador.
 
 
 **Note: La documentacion de la API consumida se encuentra en https://apifootball.com/documentation/**
