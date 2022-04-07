@@ -87,8 +87,8 @@ const Search = () => {
                   src={player.player_image}
                   alt={player.player_name}
                   name={player.player_name}
-                  onClickOne={() => {handleClickOne(player), onClick()}}
-                  onClickTwo={() => {handleClickTwo(player), onClick()}}
+                  onClickOne={() => {handleClickOne(player)}}
+                  onClickTwo={() => {handleClickTwo(player)}}
                 />
               );
             })

@@ -42,7 +42,7 @@ const TeamsDetail = () => {
          {teamOneName}
         </Text>
       </Box>
-      <Table variant="striped" colorScheme="blackAlpha" size="sm"m>
+      <Table variant="striped" colorScheme="blackAlpha" size="sm">
         <Thead>
           <Tr>
             <Th>Nombre</Th>
@@ -69,7 +69,7 @@ const TeamsDetail = () => {
            {teamTwoName}
         </Text>
       </Box>
-      <Table ml={-2}>
+      <Table ml={-2} variant="striped" colorScheme="blackAlpha" size="sm">
         <Thead >
           <Tr>
             <Th>Nombre</Th>
