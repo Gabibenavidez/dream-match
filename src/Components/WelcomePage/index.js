@@ -14,15 +14,17 @@ import {
   IconProps,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
-export default function WelcomePage({onClick}) {
+export default function WelcomePage() {
+  const navigate = useNavigate();
 
   const handleClick = () => {
-      onClick();
+      navigate('/Home');
   }
 
   return (
-    <Container maxW={'7xl'}>
+    <Container maxW={'7xl'} >
       <Stack
         align={'center'}
         spacing={{ base: 8, md: 10 }}

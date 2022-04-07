@@ -1,3 +1,4 @@
+import { AddIcon } from '@chakra-ui/icons';
 import {
   Popover,
   PopoverTrigger,
@@ -9,23 +10,27 @@ import {
   Stack,
   Flex,
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 
-import { BsThreeDotsVertical, BsChatSquareQuote } from 'react-icons/bs';
-import { RiShutDownLine, RiRestartLine, RiFileShredLine } from 'react-icons/ri';
-
-export default function OptionsButton() {
+export default function OptionsButton({onClickOne, onClickTwo}) {
+  const teamOneName = useSelector(state => state.teams.nameTeamOne);
+  const teamTwoName = useSelector(state => state.teams.nameTeamTwo);
   return (
     /**
      * You may move the Popover outside Flex.
      */
-    <Flex justifyContent="center" mt={4}>
+    <Flex justifyContent="center" >
       <Popover placement="bottom" isLazy>
         <PopoverTrigger>
           <IconButton
+            bgColor={'red.500'}
             aria-label="More server options"
-            icon={<BsThreeDotsVertical />}
+            icon={<AddIcon/>}
             variant="solid"
-            w="fit-content"
+            mt={1}
+            ml={[-4,-3,-3,-3, 3, 3]}
+            w={[20, 20, '30', '30']}
+            h='7'
           />
         </PopoverTrigger>
         <PopoverContent w="fit-content" _focus={{ boxShadow: 'none' }}>
@@ -35,21 +40,23 @@ export default function OptionsButton() {
               <Button
                 w="194px"
                 variant="ghost"
-                rightIcon={<BsChatSquareQuote />}
+                rightIcon={<AddIcon />}
                 justifyContent="space-between"
                 fontWeight="normal"
-                fontSize="sm">
-                Request Access
+                fontSize="sm"
+                onClick={onClickOne}>
+                Agregar a {teamOneName}
               </Button>
               <Button
                 w="194px"
                 variant="ghost"
-                rightIcon={<RiFileShredLine />}
+                rightIcon={<AddIcon />}
                 justifyContent="space-between"
                 fontWeight="normal"
                 colorScheme="red"
-                fontSize="sm">
-                Purge Redis Cache
+                fontSize="sm"
+                onClick={onClickTwo}>
+                 Agregar a {teamTwoName}
               </Button>
             </Stack>
           </PopoverBody>

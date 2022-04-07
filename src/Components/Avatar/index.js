@@ -2,7 +2,7 @@ import { Avatar, Box, Flex, keyframes, IconButton } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons'
 
 export default function AvatarCard({src, handleClick}) {
-  const size = '96px';
+  const size = '86px';
   const color = 'teal';
 
   const pulseRing = keyframes`
@@ -22,9 +22,10 @@ export default function AvatarCard({src, handleClick}) {
     <Flex
       justifyContent="center"
       alignItems="center"
-      h="216px"
+      h={['60px','90px','90px', '110px', '160px',"210px"]}
       w="full"
       overflow="hidden"
+      mb={5}
       >
       <IconButton size='xs' onClick={handleClick} icon={<DeleteIcon />}/>
       {/* Ideally, only the box should be used. The <Flex /> is used to style the preview. */}
@@ -33,6 +34,7 @@ export default function AvatarCard({src, handleClick}) {
         position="relative"
         w={['50px', '50px' , '50px', size]}
         h={['50px', '50px' , '50px', size]}
+        mb={[2,0,0,0,0,19]}
         _before={{
           content: "''",
           position: 'relative',

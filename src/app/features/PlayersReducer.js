@@ -27,6 +27,7 @@ export const playersSlice = createSlice({
       })
 
       .addCase(getPLayersByName.fulfilled, (state, action) => {
+          console.log(action.payload)
           state.status = 'suceedded';
           state.players = action.payload;
       })

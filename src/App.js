@@ -1,9 +1,11 @@
 import './App.css';
-import Home from './Components/Home';
+import RoutesComp from './Routes';
 
 function App() {
   return (
-    <Home />
+   <>
+      <RoutesComp />
+   </>
   );
 }
 

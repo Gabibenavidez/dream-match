@@ -3,7 +3,6 @@ import {
   ModalOverlay,
   ModalContent,
   useDisclosure,
-  Button
 } from '@chakra-ui/react'
 import { useEffect } from 'react';
 import WelcomePage from '../WelcomePage'
@@ -20,7 +19,7 @@ export function WelcomeModal() {
     <>
       <Modal isOpen={isOpen} onClose={onClose} size='full'>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent >
           <WelcomePage onClick={onClose}/>
         </ModalContent>
       </Modal>

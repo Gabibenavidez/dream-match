@@ -10,43 +10,56 @@ import { SearchIcon } from '@chakra-ui/icons';
 import { debouncer } from "../../utils/debouncer";
 import {
   addTeamOnePlayer,
+  addTeamTwoPlayer,
   teamOnePlayers,
-} from "../../app/features/TeamOneReducer";
+  teamTwoPlayers,
+  addAllPlayers
+} from "../../app/features/TeamsReducer";
 import {
-
   showAlertInfo,
   showAlertOkey,
 } from "../../Services/alertService";
-import {
-  addTeamTwoPlayer,
-  teamTwoPlayers
-} from '../../app/features/TeamTwoReducer';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-const Search = ({onClick}) => {
+
+const Search = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const players = useSelector(getPlayers);
   const selectedPlayers = useSelector(teamOnePlayers);
   const selectedPlayersTwo = useSelector(teamTwoPlayers);
-  const status = useSelector((state) => state.players.status);
-  const name = useSelector(state => state.teamTwo.name);
-  console.log(players, status);
+  const nameTwo = useSelector(state => state.teams.nameTeamTwo);
+  const nameOne = useSelector(state => state.teams.nameTeamOne);
+  const allPlayers = useSelector(state => state.teams.allPlayers);
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { 
     const value = e.target.value;
     dispatch(getPLayersByName(value));
   };
-
-  const handleClickOne = async (player) => {
-    if (selectedPlayers.length < 5 ) {
+  
+  const handleClickOne = (player) => {
+    const teamPlayers = allPlayers.filter((players) => players.player_id == player.player_id)
+    navigate('/home');
+    if (selectedPlayers.length < 5 && teamPlayers.length <= 0) {
       dispatch(addTeamOnePlayer(player));
+      dispatch(addAllPlayers(player));
+      showAlertOkey({ title: `Jugador agregado correctamente al equipo ${nameOne}!`});
+    } else if (teamPlayers.length > 0) {
+      showAlertInfo({title: 'Solo puedes usar al mismo jugador una vez'});
     } else {
       showAlertInfo({title: 'Tu equipo ya esta completo'});
     }
   };
-  const handleClickTwo = async (player) => {
-    if (selectedPlayersTwo.length < 5) { 
+  const handleClickTwo = (player) => {
+    const teamPlayers = allPlayers.filter((players) => players.player_id == player.player_id)
+    navigate('/home');
+    if (selectedPlayersTwo.length < 5 && teamPlayers.length <= 0) { 
       dispatch(addTeamTwoPlayer(player));
-      showAlertOkey({ title: `Jugador agregado correctamente al equipo ${name}!`});
+      dispatch(addAllPlayers(player));
+      showAlertOkey({ title: `Jugador agregado correctamente al equipo ${nameTwo}!`});
+    } else if (teamPlayers.length > 0) {
+      showAlertInfo({title: 'Solo puedes usar al mismo jugador una vez'});
     } else {
       showAlertInfo({title: 'Tu equipo ya esta completo'});
     }
@@ -65,9 +78,9 @@ const Search = ({onClick}) => {
           />
         </InputGroup>
       </Stack>
-      <SimpleGrid ml={2} columns={{ sm: "2", md: "4", lg: "4", xl: "6" }}>
-        {players?.length > 0
-          ? players.slice(0, 5).map((player) => {
+      <SimpleGrid ml={2} columns={[3, 4, 6, 8]}>
+        {players?.length > 0 
+          ? players.map((player) => {
               return (
                 <Card
                   key={player.player_id}

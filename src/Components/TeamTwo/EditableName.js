@@ -10,12 +10,12 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons'
 import { debouncer } from '../../utils/debouncer';
-import { selectTeamTwoName } from '../../app/features/TeamTwoReducer';
+import { selectTeamTwoName } from '../../app/features/TeamsReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function EditableName() {
+export default function EditableNameTwo() {
   const dispatch = useDispatch();
-  const teamTwoName = useSelector(state => state.teamTwo.name);
+  const teamTwoName = useSelector(state => state.teams.nameTeamTwo);
 
   const handleChange = (e) => { 
     dispatch(selectTeamTwoName(e.target.value));
@@ -42,10 +42,12 @@ export default function EditableName() {
   }
 
   return (
-    <Editable
-      textAlign='center'
+    <Flex>
+      <Editable
+      textColor={'black'}
+      textAlign={'center'}
       defaultValue={teamTwoName}
-      fontSize='2xl'
+      fontSize={['1x1','1x1','2xl','2xl']}
       isPreviewFocusable={false}
     >
       <EditablePreview />
@@ -53,5 +55,6 @@ export default function EditableName() {
       <Input as={EditableInput} onChange={debouncer(handleChange)}/>
       <EditableControls />
     </Editable>
+    </Flex>
   )
 }
